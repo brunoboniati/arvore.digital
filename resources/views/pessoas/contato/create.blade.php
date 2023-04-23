@@ -10,15 +10,17 @@
                 <nav aria-label="breadcrumb" class="mt-4 mb-4">
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('pessoas') }}">Pessoas</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Contatos de {{ $pessoa->nome_completo }}</li>
+                    <li class="breadcrumb-item"><a href="{{ url('pessoas/'.$pessoa->id) }}">Árvore</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('pessoas/showContato/'.$pessoa->id) }}">Contatos de {{ $pessoa->nome_completo }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Adicionar contato a {{ $pessoa->nome_completo }}</li>
                     </ol>
                 </nav>
             @else
                 <nav aria-label="breadcrumb" class="mt-4 mb-4">
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('pessoas/'.$pessoa->id) }}">Árvore</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('pessoas/showContato/'.$pessoa->id) }}">Contatos</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Contatos de {{ $pessoa->nome_completo }}</li>
+                    <li class="breadcrumb-item"><a href="{{ url('pessoas/showContato/'.$pessoa->id) }}">Contatos de {{ $pessoa->nome_completo }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Adicionar contato a {{ $pessoa->nome_completo }}</li>
                     </ol>
                 </nav>
             @endif
@@ -32,7 +34,7 @@
                 <div class="form-group" >
                     <label for="tipo_contato">Tipo contato</label> 
                     <select id="tipo_contato"
-                        class="form-control @error('tipo_contato') is-invalid @enderror" 
+                        class="form-select @error('tipo_contato') is-invalid @enderror" 
                         name="tipo_contato" 
                         required>
                         @foreach($tipoContato as $tipo)            

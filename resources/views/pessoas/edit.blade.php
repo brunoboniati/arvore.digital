@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <h1 class="mt-4 mb-4">Editar {{ $pessoa->nome_completo }}</h1>
 
-            <a class="btn btn-sm btn-success mb-4" href="{{ url('pessoas/adicionarContato',$pessoa->id) }}">Adicionar contato</a>
+            <a class="btn btn-sm btn-success mb-4" href="{{ url('pessoas/showContato',$pessoa->id) }}">Gerenciar contatos</a>
 
             @if(Auth::user()->isAdmin())
                 <nav aria-label="breadcrumb" class="mt-4 mb-4">

@@ -10,13 +10,14 @@
                 <nav aria-label="breadcrumb" class="mt-4 mb-4">
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('pessoas') }}">Pessoas</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('pessoas_arvore/'.$pessoa->slug.'#collapse'.$pessoa->id) }}">Árvore</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Contatos de {{ $pessoa->nome_completo }}</li>
                     </ol>
                 </nav>
             @else
                 <nav aria-label="breadcrumb" class="mt-4 mb-4">
                     <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('pessoas/'.$pessoa->id) }}">Árvore</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('pessoas_arvore/'.$pessoa->slug.'#collapse'.$pessoa->id) }}">Árvore</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Contatos de {{ $pessoa->nome_completo }}</li>
                     </ol>
                 </nav>
@@ -43,7 +44,7 @@
                             <td>
                                 <a target="_blank" href="{{ $contato->prefixo }}{{ $contato->pivot->descricao }}">{{ $contato->prefixo }}{{ $contato->pivot->descricao }}</a></td>
                             <td>
-                                <a href="{{ route('pessoas.deleteContato',$contato->pivot->id)}}" class="btn btn-sm btn-danger">Apagar</a>
+                                <a href="{{ route('pessoas.deleteContato',$contato->pivot->id)}}" class="btn btn-sm btn-danger"><i class="bi bi-trash3"></i> Apagar</a>
                             </td>
                         </tr>
                     @endforeach          
