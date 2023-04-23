@@ -73,8 +73,10 @@ class UsuarioController extends Controller
         $user = User::find($user->id);
        
         //auth()->login($user);
-
-        return redirect('/')->with('success', "Conta criado com sucesso!");
+        if(Auth::user()->isAdmin())
+            return redirect('/users')->with('success', "Usuário criado com sucesso!");
+        else
+            return redirect('/')->with('success', "Conta criada com sucesso!");
     }
 
     /**

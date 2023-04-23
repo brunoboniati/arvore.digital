@@ -38,6 +38,19 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <br>
+                <div class="form-group">
+                    <label for="visivel">Visível *</label> 
+                    <select id="visivel"
+                        name="visivel"
+                        class="form-select @error('visivel') is-invalid @enderror">  
+                        <option {{ old("visivel") == "0" ? "selected":"" }} value="0">Não visível</option>
+                        <option {{ old("visivel") == "1" ? "selected":"" }} value="1">Visível</option>
+                    </select>     
+                    @error('visivel')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
 
                 <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}" />
         

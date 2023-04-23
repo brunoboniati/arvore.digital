@@ -42,6 +42,19 @@
                     @enderror
                 </div>
                 <br>
+                <div class="form-group">
+                    <label for="visivel">Visível *</label> 
+                    <select id="visivel"
+                        name="visivel"
+                        class="form-select @error('visivel') is-invalid @enderror">  
+                        <option {{ $tipo->visivel == "0" ? "selected":"" }} value="0">Não visível</option>
+                        <option {{ $tipo->visivel == "1" ? "selected":"" }} value="1">Visível</option>
+                    </select>     
+                    @error('visivel')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <br>
                 <input type="submit" value="Cadastrar" class="btn btn-sm btn-dark btn-block">
 
             </form>

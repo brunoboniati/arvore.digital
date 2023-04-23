@@ -15,7 +15,8 @@ class TipoContato extends Model
 
     protected $fillable = [
         'descricao', 
-        'prefixo', 
+        'prefixo',
+        'visivel' 
     ];
 
     /**

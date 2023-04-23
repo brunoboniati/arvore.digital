@@ -26,6 +26,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Descrição</th>
                     <th scope="col">Prefixo </th>
+                    <th scope="col">Visível </th>
                     <th scope="col">Editar</th>
                 </tr>
                 </thead>
@@ -35,6 +36,11 @@
                             <th scope="row">{{ $tipo->id }}</td>
                             <td>{{ $tipo->descricao }}</td>
                             <td>{{ $tipo->prefixo }}</td>
+                            <td>
+                                @if($tipo->visivel == '1') <i class="bi bi-check2-square" style="color:green"></i>
+                                @else <i class="bi bi-x-square" style="color:red"></i>
+                                @endif
+                            </td>
                             <td> 
                                 <a href="{{ route('tipocontato.edit',$tipo->id)}}" class="btn btn-sm btn-primary">Edit</a>
                             </td>

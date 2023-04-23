@@ -69,6 +69,14 @@ class Pessoa extends Model
     {
         return $this->belongsToMany(TipoContato::class, 'pessoas_contatos')->withPivot('id','descricao')->withTimestamps();
     }
+
+     /**
+     * Contato da pessoa
+     */
+    public function contatos_visivel()
+    {
+        return $this->belongsToMany(TipoContato::class, 'pessoas_contatos')->withPivot('id','descricao')->withTimestamps()->where('visivel','1');
+    }
     
     /**
      * Busca pessoa de qual ela é descendente

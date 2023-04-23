@@ -14,7 +14,10 @@
 
         <!--ICONS-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        
+        <script src="https://kit.fontawesome.com/855c3422f4.js" crossorigin="anonymous"></script>
         @yield('style')
+
     </head>
     <body>
 

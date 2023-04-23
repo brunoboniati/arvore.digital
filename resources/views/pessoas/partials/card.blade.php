@@ -5,9 +5,9 @@
             <div class="row g-0">
                 <div class="col-md-2">
                     @if($pessoa->genero==='F')
-                    <img src="{{ asset('icons/users/icon_female.png') }}" class="img-fluid rounded-start mx-auto d-block" width="70px" alt="{{ $pessoa->nome_completo }}">
+                    <img src="{{ url('storage/users/icon_female.png') }}" class="img-fluid rounded-start mx-auto d-block" width="70px" alt="{{ $pessoa->nome_completo }}">
                     @else
-                    <img src="{{ asset('icons/users/icon_male.png') }}" class="img-fluid rounded-start mx-auto d-block" width="70px" alt="{{ $pessoa->nome_completo }}">
+                    <img src="{{ url('storage/users/icon_male.png') }}" class="img-fluid rounded-start mx-auto d-block" width="70px" alt="{{ $pessoa->nome_completo }}">
                     @endif
                 </div>
                 <div class="col-md-8 ms-4">
@@ -25,8 +25,9 @@
                         @if($pessoa->nasc_ano)
                             <i class='bi bi-star-fill align-middle' style="font-size: 0.7rem; color: grey;"></i> {{ $pessoa->nasc_ano }}
                         @endif
-                        @if($pessoa->vivo==='0' && $pessoa->obt_ano) 
-                            <i class='bi bi-circle-fill align-middle ms-2' style="font-size: 0.6rem; color: grey;"></i> {{ $pessoa->obt_ano }}
+                        @if($pessoa->vivo==='0') 
+                            <i class="fas fa-cross fa-xs" style="font-size: 0.6rem; color: grey;"></i>
+                            {{ $pessoa->obt_ano ? $pessoa->obt_ano : ''}}
                         @endif
                     </p>
                 </div>
@@ -35,6 +36,11 @@
     </div>
 
     <div class="col-md-3 d-flex flex-row mb-3">
+        @if($pessoa->contatos_visivel->count() > 0)
+            <button type="button" class="btn btn-light btn-sm me-2" data-bs-toggle="modal" data-bs-target="#contatos{{ $pessoa->id }}">
+                <i class="bi bi-info-circle"></i>
+            </button>
+        @endif
         @if(!$pessoa->raiz())
             <a href="{{ url('pessoas_arvore',$pessoa->slug) }}" class="btn btn-light btn-sm me-2" title="Ver árvore de {{ $pessoa->nome_completo }}"><i class="bi bi-tree"></i></a>        
         @endif
@@ -52,9 +58,34 @@
             @endif
         @endif
     </div>
+</div>
 
-
-
+<!-- Modal Contatos -->
+<div class="modal fade" id="contatos{{ $pessoa->id }}" tabindex="-1" aria-labelledby="contatoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="contatoLabel">Contatos de {{ $pessoa->nome_completo }}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-striped">                
+                <tbody>
+                    @foreach($pessoa->contatos_visivel as $contato)                
+                        <tr>
+                            <td>{{ $contato->descricao }}</td>
+                            <td>
+                                <a target="_blank" href="{{ $contato->prefixo }}{{ $contato->pivot->descricao }}">{{ $contato->prefixo }}{{ $contato->pivot->descricao }}</a></td>
+                        </tr>
+                    @endforeach          
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
 </div>
 
 

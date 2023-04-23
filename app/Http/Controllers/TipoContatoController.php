@@ -40,6 +40,7 @@ class TipoContatoController extends Controller
         // Form validation
         $this->validate($request, [
             'descricao' => 'required',
+            'visivel' => 'required',
         ]);
         
         //  Store data in database
@@ -83,12 +84,14 @@ class TipoContatoController extends Controller
         // Form validation
         $this->validate($request, [
             'descricao' => 'required',
+            'visivel' => 'required',
         ]);
         
         //  Store data in database
         $tipo = TipoContato::find($id);
         $tipo->descricao = $request->get('descricao');
         $tipo->prefixo = $request->get('prefixo');
+        $tipo->visivel = $request->get('visivel');
         $tipo->save();
 
         return redirect('tipocontato')->with('success', 'Tipo Contato alterado');
