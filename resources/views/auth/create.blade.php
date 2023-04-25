@@ -72,7 +72,8 @@
                         <span class="text-danger text-left">{{ $errors->first('password_confirmation') }}</span>
                     @endif
                 </div>
-                @if(auth()->user()->isAdmin())
+                
+                @if(auth()->check() and auth()->user()->isAdmin())
                     <div class="form-group">
                         <label for="tipo"> Tipo de usuário <span style="color:red;">*</span></label>
                         <select id="tipo"
